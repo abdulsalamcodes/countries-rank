@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import CountriesTable from '../components/CountriesTable/CountriesTable';
+import CountriesTable from '/components/CountriesTable/CountriesTable';
 import Layout from '../components/layout'
 import SearchInput from '../components/SearchInput/SearchInput';
 import styles from '../styles/Home.module.css'
+
 export default function Home({ countries }) {
 
   const [keyword, setKeyword] = useState('')
