@@ -1,5 +1,4 @@
 import { Link } from '@material-ui/core';
-import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import Layout from "../../components/layout";
 import styles from './country.module.css'
