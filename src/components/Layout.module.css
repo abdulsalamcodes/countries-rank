@@ -1,0 +1,46 @@
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 2.4rem;
+
+  max-width: 1140px;
+  margin: 0 auto;
+
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3.2rem;
+}
+
+.footer {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 3.2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.themeSwitcher {
+  border: none;
+  background: transparent;
+  margin-left: 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1.6rem;
+
+  outline-width: none  !important;
+}
+
+.themeSwitcher svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+
+.themeSwitcher:focus {
+  border-width: 0;
+  outline-width: 0;
+}

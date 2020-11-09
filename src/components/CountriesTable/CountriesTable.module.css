@@ -1,0 +1,80 @@
+.heading {
+    display: flex;
+    margin: .3rem 0;
+    align-items: center;
+}
+
+.heading button {
+    border: none;
+    background-color: transparent;
+    outline-width: 0;
+    cursor: pointer;
+
+
+}
+.heading_flag {flex: 1; margin-right: 1.5rem;}
+.heading_name, .heading_population, .heading_area, .heading_gini {
+    flex: 4;
+    padding: 2rem;
+    color: var(--text-secondary-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.heading_name, .name {
+    text-align: left;
+    justify-content: flex-start;
+
+}
+
+.heading_arrow {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+}
+.row {
+    display: flex;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--background-color-light);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    align-items: center;
+
+    box-shadow: var(--box-shadow);
+    transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
+    cursor: pointer;
+}
+
+.row:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.01);
+}
+
+.row > *  {
+    flex: 4;
+}
+
+.row .flag {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.flag img {
+    width: 100%;
+    border-radius: 2px;
+}
+
+
+@media screen and (max-width: 720px) {
+    .heading_area, .heading_gini, .area, .gini, .flag, .heading_flag {
+        display: none;
+    }
+}

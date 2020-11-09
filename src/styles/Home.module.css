@@ -1,0 +1,23 @@
+.counts {
+    margin: 1.2rem 0;
+    color: var(--text-color-secondary);
+}
+
+.inputContainer {
+    margin-bottom: 4rem;
+}
+
+@media screen and (min-width: 720px) {
+    .inputContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .counts {
+        flex: 1.5;
+    }
+
+    .inputs {
+        flex: 2;
+    }
+}
