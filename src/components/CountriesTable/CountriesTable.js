@@ -1,7 +1,9 @@
+
 import { useState } from 'react'
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@material-ui/icons';
 import styles from './CountriesTable.module.css'
-import { Link } from '@material-ui/core';
+import CountryRow from './CountryRow';
+
 
 const orderBy = (countries, value, order) => {
     if (order === "asc") {
@@ -33,12 +35,12 @@ const SortArrow = ({ order }) => {
         )
     }
 }
+
+
 const CountriesTable = ({ countries }) => {
     const [order, setOrder] = useState();
     const [value, setValue] = useState();
-
     const orderedCountries = orderBy(countries, value, order);
-
     const switchOrder = () => {
         if (!order) {
             return setOrder('asc');
@@ -63,38 +65,35 @@ const CountriesTable = ({ countries }) => {
             <div className={styles.heading_flag}></div>
             <button className={styles.heading_name} onClick={() => switchValueAndOrder('name')}>
                 <div>Name</div>
-                {value === "name" &&  <SortArrow order={order} />}
-               
+                {value === "name" && <SortArrow order={order} />}
+
             </button>
 
             <button className={styles.heading_population} onClick={() => switchValueAndOrder('population')}>
                 <div>population</div>
-                {value === "population" &&   <SortArrow order={order} />}
+                {value === "population" && <SortArrow order={order} />}
             </button>
 
             <button className={styles.heading_area} onClick={() => switchValueAndOrder('area')}>
-                <div>Area (km<sup style={{fontSize: ".5rem"}}>2</sup>)</div>
-                {value === "area" &&   <SortArrow order={order} />}
+                <div>Area (km<sup style={{ fontSize: ".5rem" }}>2</sup>)</div>
+                {value === "area" && <SortArrow order={order} />}
             </button>
 
             <button className={styles.heading_gini} onClick={() => switchValueAndOrder('gini')}>
                 <div>Gini</div>
-                {value === "gini" &&   <SortArrow order={order} />}
+                {value === "gini" && <SortArrow order={order} />}
             </button>
         </header>
 
 
-        {orderedCountries.map((country) =>
-            <Link href={`/country/${country.alpha3Code}`} key={country.name}>
-                <div className={styles.row}>
-                    <div className={styles.flag}><img src={country.flag} alt={country.name}/></div>
-                    <div className={styles.name}>{country.name}</div>
-                    <div className={styles.population}>{country.population}</div>
-                    <div className={styles.area}>{country.area || 0} </div>
-                    <div className={styles.gini}>{country.gini || 0}%</div>
-                </div>
-            </Link>
-        )}
+        {orderedCountries.map((country) => <CountryRow
+            name={country.name}
+            gini={country.gini}
+            population={country.population}
+            area={country.area}
+            alpha3Code={country.alpha3Code}
+            flag={country.flag}
+        />)}
     </div>
 }
 

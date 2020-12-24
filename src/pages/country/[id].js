@@ -1,34 +1,36 @@
 import { Link } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import Layout from "../../components/Layout";
-import styles from './country.module.css'
+import styles from './country.module.css';
 
 const getCountry = async (id) => {
     const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
     const country = await res.json();
-
     return country;
 }
 
 const Country = ({ country }) => {
-    console.log(country);
+    
     const [borders, setBorders] = useState([]);
+    const [loading, setLoading] = useState(true);
+    
 
     const getBorders = async () => {
         const borders = await Promise.all(country.borders.map(border => getCountry(border)));
+        setLoading(false)
         setBorders(borders)
     }
 
     useEffect(
         () => {
             getBorders();
-        // console.log(getBorders())
-    }, [])
+        }, [])
 
 
 
     return <Layout title={country.name}>
         <div className={styles.container}>
+            {/* Side bar */}
             <div className={styles.left}>
                 <div className={styles.overview_panel}>
                     <img src={country.flag} alt={country.name} />
@@ -55,6 +57,7 @@ const Country = ({ country }) => {
                 </div>
             </div>
 
+            {/* Main Content */}
             <div className={styles.right}>
 
                 <div className={styles.details_panel}>
@@ -95,13 +98,13 @@ const Country = ({ country }) => {
                     <div className={styles.borderWrapper}>
                         <h4 className={styles.borders_heading}>Neighbouring Countries</h4>
                         <div className={styles.borders_row} >
-                            {borders.map(({ flag, name, alpha3Code }) =>
-                            <Link href={`./${alpha3Code}`}>
-                                <div className={styles.border_box} key={name}>
-                                    <><img src={flag} /></>
-                                    <div className={styles.border_name}>{name}</div>
-                                </div>
-                            </Link>
+                            {loading ? 'Loading....' : borders.map(({ flag, name, alpha3Code }) =>
+                                <Link href={`./${alpha3Code}`}>
+                                    <div className={styles.border_box} key={name}>
+                                        <><img src={flag} /></>
+                                        <div className={styles.border_name}>{name}</div>
+                                    </div>
+                                </Link>
                             )}
                         </div>
                     </div>
@@ -119,7 +122,6 @@ const Country = ({ country }) => {
 export default Country;
 
 export const getServerSideProps = async ({ params }) => {
-
     const country = await getCountry(params.id);
     return {
         props: {

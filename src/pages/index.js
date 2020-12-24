@@ -5,8 +5,9 @@ import SearchInput from '../components/SearchInput/SearchInput';
 import styles from '../styles/Home.module.css'
 
 export default function Home({ countries }) {
-
   const [keyword, setKeyword] = useState('')
+
+  // Filter countries based on name, region and subregion.
   const filteredCountries = [...countries].filter((country) =>
     country.name.toLowerCase().includes(keyword) ||
     country.region.toLowerCase().includes(keyword) ||
@@ -18,8 +19,6 @@ export default function Home({ countries }) {
     setKeyword(e.target.value.toLowerCase());
   }
 
-  console.log(filteredCountries);
-  // console.log(countries);
 
   return <Layout>
     <div className={styles.inputContainer}>
